@@ -11,12 +11,9 @@ function appendToDisplayOperator(input){
   if (display.value.slice(-1) === "+" || display.value.slice(-1) === "-" || display.value.slice(-1) === "/" || display.value.slice(-1) === "*"){
       display.value = display.value.slice(0, display.value.length -1);
   }
-  if (display.value === ""){
-    
-  }
-  else{
+  if (display.value !== "") {
     display.value += input;
-  }
+}
 }
 
 function clearDisplay(){
@@ -24,12 +21,16 @@ function clearDisplay(){
 }
 
 function calculate(){
-  display.value = eval(display.value);
+  if (display.value.slice(-1) === "+" || display.value.slice(-1) === "-" || display.value.slice(-1) === "/" || display.value.slice(-1) === "*"){
+    display.value = display.value.slice(0, display.value.length -1 );
+  }
+  display.value = eval(display.value)
 }
 
 function squared(){
     if (display.value.slice(-1) === "+" || display.value.slice(-1) === "-" || display.value.slice(-1) === "/" || display.value.slice(-1) === "*"){
         display.value = display.value.slice(0, display.value.length -1);
     }
+    calculate(display.value);
     display.value = Math.sqrt(display.value);
 }
