@@ -4,16 +4,20 @@ function appendToDisplay(input) {
   display.value += input;
  }
 
-function backspace(input) {
+function backspace() {
   display.value = display.value.slice(0, display.value.length -1);
 }
+
+function isOperator(digit) {
+  return ["/","*","+","-"].includes(digit);
+}
 function appendToDisplayOperator(input){
-  if (display.value.slice(-1) === "+" || display.value.slice(-1) === "-" || display.value.slice(-1) === "/" || display.value.slice(-1) === "*"){
+  if (isOperator(display.value.slice(-1))){
       display.value = display.value.slice(0, display.value.length -1);
   }
   if (display.value !== "") {
     display.value += input;
-}
+  }
 }
 
 function clearDisplay(){
@@ -21,14 +25,14 @@ function clearDisplay(){
 }
 
 function calculate(){
-  if (display.value.slice(-1) === "+" || display.value.slice(-1) === "-" || display.value.slice(-1) === "/" || display.value.slice(-1) === "*"){
+  if (isOperator(display.value.slice(-1))){
     display.value = display.value.slice(0, display.value.length -1 );
-  }
+ }
   display.value = eval(display.value)
 }
 
 function squared(){
-    if (display.value.slice(-1) === "+" || display.value.slice(-1) === "-" || display.value.slice(-1) === "/" || display.value.slice(-1) === "*"){
+    if (isOperator(display.value.slice(-1))){
         display.value = display.value.slice(0, display.value.length -1);
     }
     calculate(display.value);
